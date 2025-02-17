@@ -45,43 +45,30 @@ const TodoList = () => {
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto bg-black text-white shadow-md rounded-lg">
-      <h1 className="text-xl font-bold mb-4 text-blue-400">ToDo List</h1>
-      <div className="flex mb-4">
+    <div>
+      <h1>ToDo List</h1>
+      <div class="AddTodoItem">
         <input
-          className="border p-2 flex-grow rounded-l bg-gray-800 text-white border-blue-500"
           type="text"
           value={task}
           onChange={(e) => setTask(e.target.value)}
           placeholder="Add a new task..."
         />
-        <button
-          className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-r"
-          onClick={addTask}
-        >
-          Add
-        </button>
+        <button onClick={addTask}>Add</button>
       </div>
-      <ul>
+
+      <ul class="TodoList">
         {tasks.map((t) => (
-          <li
-            key={t.id}
-            className="flex justify-between items-center p-2 border-b border-gray-700"
-          >
-            <span
-              className={`cursor-pointer ${
-                t.completed ? "line-through text-gray-500" : "text-white"
-              }`}
-              onClick={() => toggleTask(t.id)}
-            >
-              {t.text}
-            </span>
-            <button
-              className="bg-red-600 hover:bg-red-700 text-white p-1 rounded"
-              onClick={() => deleteTask(t.id)}
-            >
-              Delete
-            </button>
+          <li class="TodoItem" key={t.id}>
+            <div>
+              <input
+                type="checkbox"
+                checked={t.completed}
+                onChange={() => toggleTask(t.id)}
+              />
+              <span>{t.task_name}</span>
+            </div>
+            <button onClick={() => deleteTask(t.id)}>Delete</button>
           </li>
         ))}
       </ul>
